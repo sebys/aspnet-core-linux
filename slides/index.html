@@ -199,6 +199,63 @@
 				</section>	
 				<section data-background="/img/muchas-gracias.jpg">
 				</section>
+        <section>
+          <section>
+            <h2>Apache como Reverse proxy</h2>
+            <ul>
+              <li>¿Por qué Apache?</li>
+              <li>¿Por que Reverse proxy?</li>
+              <li>¿Y como le hago?</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Conf apache</h3>
+            <p>En <code>/etc/httpd/conf/extra/httpd-vhosts.conf</code></p>
+
+<pre><code> &lt;VirtualHost *:80&gt;
+      ServerName dotnet.com
+      ProxyPreserveHost on
+      ProxyPass / http://0.0.0.0:5000/
+      ProxyPassReverse / http://0.0.0.0:5000/
+      ErrorLog &quot;/var/log/httpd/dotnetcom-error_log&quot;
+      CustomLog &quot;/var/log/httpd/dotnetcom-access_log&quot; common
+  &lt;/VirtualHost&gt;
+</code></pre>
+            <aside class="notes">
+              
+              <ul>
+              <li>agregar el dominio al hosts</li>
+              <li> arrancar apache con 'systemctl start httpd' </li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+          <section>
+            <section>
+              <h3>Mantenerlo en marcha</h3>
+              <ul>
+                <li>Supervisord</li>
+                <li>Sytemd</li>
+              </ul>
+            </section>
+            <section>
+              <h3>Systemd</h3>
+              <p>¿Qué es?</p>
+              <p>En <code>/etc/systemd/system</code></p>
+              <pre><code>[Unit]
+Description=Sitio web dotnet
+
+[Service]
+Type=simple
+PIDFile=/run/appDemo.pid
+ExecStart=/usr/bin/dotnet /srv/appDemo/demo-aspnetcore.dll
+Environment=ASPNETCORE_ENVIRONMENT=Production
+ExecStopPost=/usr/bin/rm -f /run/appDemo.pid
+Restart=always
+              </code></pre>
+            </section>
+          </section>
+				
 			</div>
 		</div>
 
