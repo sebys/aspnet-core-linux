@@ -36,7 +36,7 @@ Full .NET Framework incluye todas las APIS y asegura compatibilidad par atrás (
 
 ## .NET Core
 
-.NET Core es una versión modular de .NET Framework diseñada para que sea portátil entre plataformas.
+.NET Core es el nuevo framework *open source* de .NET escrito totalmente desde cero. Incluye un subconjunto de la versión completa de .NET Framework y fue diseñado de forma modular para que sea portátil entre plataformas.
 
 Características:
 
@@ -47,15 +47,15 @@ Características:
 
 .NET Core es open source, incluyendo el runtime y las librerías que componen el framework. Todo el código fuente está disponible en [GitHub](https://github.com/dotnet).
 
-Tal vez el atractivo más grande es que podemos correr nuestras aplicaciones .NET en cualquier plataforma. Tener en cuenta que en Linux solo se tiene soporte en las distribuciones LTS.
+Tal vez el atractivo más grande es que podemos correr nuestras aplicaciones .NET en cualquier plataforma (en Linux solo se tiene soporte en las distribuciones LTS).
 
-Al ser modular solo uso lo que necesito, por lo el resultado es un framework muy pequeño comparado al monolítico .NET Framework. La gestión de dependencias se hacen por medio del gestor de paquetes Nuget.
+Al ser modular solo uso lo que necesito, por lo el resultado es un framework muy pequeño comparado al monolítico .NET Framework. La gestión de dependencias se hacen por medio del gestor de paquetes Nuget. Este esquema no solo nos permite incrementar la performance de nuestras aplicaciones sino que nos permite mayor agilidad en nuestros desarrollos, ya que tenemos la posibilidad de elegir las bibliotecas que realmente vamos a utilizar.
 
-Es importante tener en cuenta que el "ejecutable" final esta compuesto por el compilador y el runtime. Esto me permite tener distintas aplicaciones corriendo con distintas versiones de .NET, pero lo más importante es que ya no necesitamos instalar el framework en los servidores. Desplegar aplicaciones resulta más sencillo.
+Es importante tener en cuenta que el "ejecutable" final esta compuesto por nuestra código, el compilador y el runtime. Esto me permite tener aplicaciones con distintas versiones de .NET corriendo el misma máquina, por lo tanto ya no necesitamos instalar el framework en los equipos. De esta forma el despliegue de aplicaciones resulta más sencillo.
 
 Gracias a CLI podemos crear, ejecutar y desplegar aplicaciones .NET Core desde la consola utilizando el comando `dotnet`.
 
-Posee dos grandes frameworks: ASP.NET CORE y UWP
+.NET Core posee dos grandes frameworks: ASP.NET CORE y UWP.
 
 ## .NET CLI
 
@@ -148,9 +148,9 @@ Algunas características son:
 
 ###### Program class:
 
-Una aplicación ASP.NET Core es una aplicación de consola sencilla que crea un web server en el método "main". Esto es posible gracias al WebHostBuilder que nos permite configurar el web server y la clases de inicialización - startup class -.
+Una aplicación ASP.NET Core es una aplicación de consola sencilla que crea un web server en el método `Main`. Esto es posible gracias a `WebHostBuilder` que nos permite configurar el web server y la clases de inicialización - startup class -.
 
-The Build and Run methods build the IWebHost object that will host theapp and start it listening for incoming HTTP requests.
+The `Build` and `Run` methods build the `IWebHost` object that will host theapp and start it listening for incoming HTTP requests.
 
 ###### Startup:
 
