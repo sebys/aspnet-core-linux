@@ -10,9 +10,9 @@ Contenido sobre la presentación ASP.NET CORE en Linux.
 - [ASP.NET Core](#asp.net_core)
 - [Kestrel](#kestrel)
 
-## Titulo
+## Título
 
-El contenido de esta presentación abarca una introducción a .NET Core y ASP.NET. La demo propuesta consta de la creación y ejecución de aplicaciones ASP.NET Core en Linux - distribución Ubuntu 16.04 -.
+El contenido de esta presentación abarca una introducción a .NET Framework, .NET Core, ASP.NET y ASP.NET Core. La demo propuesta consta de la creación y ejecución de aplicaciones ASP.NET Core en Linux - distribución Ubuntu 16.04 -.
 
 ## .NET Framework
 
@@ -20,17 +20,17 @@ El contenido de esta presentación abarca una introducción a .NET Core y ASP.NE
 
 Esta compuesto de:
 
-- **Lenguajes y Compiladores para los lenguajes**: no generan codigo nativo, sino código IL (intermediate language).
-- **Runtime de ejecución**: interpreta el código IL y lo combierte a código nativo - JIT -. Servicios que nos ofrece: Garbage collector, compilador JIT.
+- **Lenguajes y Compiladores para los lenguajes**: no generan código nativo, sino código IL (intermediate language).
+- **Runtime de ejecución**: interpreta el código IL y lo comvierte a código nativo - JIT -. Servicios: Garbage collector, compilador JIT.
 - **Base Class Library**: librería base.
 
 Funcionamiento: 
 
-![Funcionamiento del framework](https://github.com/sebys/aspnet-core-linux/tree/master/slides/img/netframework.png)
+![Funcionamiento del framework](/img/netframework.png)
 
 Cuando compilamos nuestra aplicación, el compilador del lenguaje genera código IL.
 
-Cuando el SO detecta que que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo JIT el código IL en código nativo que es ejecutado por la plataforma.
+Cuando el SO detecta que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo JIT el código IL en código nativo que es ejecutado por la plataforma.
 
 ## .NET Core
 
