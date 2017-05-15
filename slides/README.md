@@ -75,7 +75,9 @@ Más información en la [documentación oficial](https://docs.microsoft.com/en-u
 
 ## ASP.NET
 
-ASP.NET es el framework de MS para la construcción de aplicaciones web.
+ASP.NET es el framework de desarrollo web de Microsoft. Esta herramienta nos permite construir diferentes tipos de soluciones webs (aplicaciones, sites y sevicios) del tipo cliente-servidor.
+
+Las alternativas disponibles son:
 
 - **Web**: MVC, Web Forms, Web Pages.
 - **APIs**: Web API
@@ -83,16 +85,20 @@ ASP.NET es el framework de MS para la construcción de aplicaciones web.
 
 ## Evolución de ASP.NET
 
-El framework ASP.NET a sufrido grandes cambios a traves del tiempo, adaptandose a las necesidades de cada momento.
+El framework ASP.NET a sufrido grandes cambios a traves del tiempo, adaptandose a las necesidades de cada momento:
 
-- **ASP**: programación similar a php con vbscript.
-- **ASP.NET WebForm**: necesidad de atraer desarrolladores de aplicaciones de escritorio a la plataforma web - surgimiento de la web -. Hace 15 años aproximadamente.
-- **ASP.NET MVC**: Integración con los estandares web (Javascript, HTML, etc).
+- **ASP**: programación similar a php con vbscript. Lanzado en el año 1996.
+- **ASP.NET WebForm**: en pleno surgimiento de la web, se tuvo la necesidad de atraer desarrolladores de aplicaciones de escritorio a la plataforma web. Lanzado en el año 2002.
+- **ASP.NET MVC**: integración con los estandares web (Javascript, HTML, etc). Lanzado en el año 2009.
 - **ASP.NET CORE**: modular, preparado para el cloud, multi plataforma, desacoplado de Windows y de IIS.
 
-Necesidades de las aplicaciones web son diferentes ahora que hace 10 años atrás, hoy necesitamos estar conectados todo el tiempo. Necesitamos servidores web optimizados para atender gran cantidad de requests con poco ancho de banda y uso de CPU. Nada mejor que servidores UNIX para estos tipos de escenarios.
+Las necesidades de las aplicaciones web fueron cambiando a traves de los años, hoy necesitamos estar conectados todo el tiempo pero hace 10 años atrás la necesidad principal era servir documentos. 
+
+Actualmente necesitamos servidores web optimizados para atender gran cantidad de requests con poco ancho de banda y uso de CPU, y nada mejor que servidores UNIX para estos tipos de escenarios. Este fue uno de los motivos por el cual aparece .NET Core.
 
 ## ASP.NET Core
+
+ASP.NET Core is a new open-source and cross-platform framework for building modern cloud based internet connected applications, such as web apps, IoT apps and mobile backends. 
 
 Caracteristicas:
 
@@ -102,7 +108,6 @@ Caracteristicas:
 - Editores o herramientas de desarrollo
 - Cross Platform
 
-ASP.NET Core is a new open-source and cross-platform framework for building modern cloud based internet connected applications, such as web apps, IoT apps and mobile backends. 
 
 ASP.NET Core has a number of architectural changes that result in a much leaner and modular framework. ASP.NET Core is no longer based on System.Web.dll. It is based on a set of granular and well factored NuGet packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, improved performance, and decreased costs in a pay-for-what-you-use model.
 
