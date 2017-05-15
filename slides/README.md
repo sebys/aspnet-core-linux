@@ -12,17 +12,26 @@ Contenido sobre la presentación ASP.NET CORE en Linux.
 
 ## Titulo
 
-El contenido de esta presentación abarca la creación y ejecución de aplicaciones ASP.NET Core en Linux - distribución Ubuntu 16.04 -. 
+El contenido de esta presentación abarca una introducción a .NET Core y ASP.NET. La demo propuesta consta de la creación y ejecución de aplicaciones ASP.NET Core en Linux - distribución Ubuntu 16.04 -.
 
 ## .NET Framework
 
-.NET Framework esta compuesto de:
+.NET Framework es una tecnología desarrollado por Microsoft que soporta la compilación y ejecución de aplicaciones en Windows.
 
-- **Lenguajes y Compiladores para los lenguajes**: no generan codigo nativo, sino código IL.
+Esta compuesto de:
+
+- **Lenguajes y Compiladores para los lenguajes**: no generan codigo nativo, sino código IL (intermediate language).
 - **Runtime de ejecución**: interpreta el código IL y lo combierte a código nativo - JIT -. Servicios que nos ofrece: Garbage collector, compilador JIT.
 - **Base Class Library**: librería base.
 
-Como funciona: cuando el SO detecta que que lo que se ejecuta es código punto .NET, pone a correr el runtime y ejecuta el código.
+Como funciona: 
+
+![Imagen sobre el funcionamiento del framework]
+(https://github.com/sebys/aspnet-core-linux/tree/master/slides/img/netframework.svg)
+
+Cuando compilamos nuestra aplicación, el compilador del lenguaje genera código IL.
+
+Cuando el SO detecta que que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo JIT el código IL en código nativo que es ejecutado por la plataforma.
 
 ## .NET Core
 
@@ -39,7 +48,7 @@ Es importante tener en cuenta que el "ejecutable" final esta compuesto por el co
 
 Al ser modular, solo uso lo que necesito por lo el resultado es un framework bien pequeño - 11 MB - comparado al monolitico .NET Framework. La gestión de dependencias se hacen por medio de Nuget.
 
-Gracias a CLI podemos crear, ejecutar y deplegar aplicaciones .NET CORE desde la consola - comando "dotnet" -.
+Gracias a CLI podemos crear, ejecutar y deplegar aplicaciones .NET CORE desde la consola - comando `dotnet` -.
  
 En Linux solo se tiene soporte en las distribuciones LTS.
 
@@ -67,9 +76,13 @@ https://docs.microsoft.com/en-us/dotnet/articles/core/tools/
 
 ASP.NET es el framework de MS para la construcción de aplicaciones web.
 
+- **Web**: MVC, Web Forms, Web Pages.
+- **APIs**: Web API
+- **RealTime**: SignalR
+
 ## Evolución de ASP.NET
 
-El framework ASP.NET a sufrido grandes cambios a traves del tiempo, adaptandose a las necesidades de cada era.
+El framework ASP.NET a sufrido grandes cambios a traves del tiempo, adaptandose a las necesidades de cada momento.
 
 - **ASP**: programación similar a php con vbscript.
 - **ASP.NET WebForm**: necesidad de atraer desarrolladores de aplicaciones de escritorio a la plataforma web - surgimiento de la web -. Hace 15 años aproximadamente.
@@ -80,17 +93,17 @@ Necesidades de las aplicaciones web son diferentes ahora que hace 10 años atrá
 
 ## ASP.NET Core
 
-Modular
-Preparado para el cloud
-Open Source
-Editores o herramientas de desarrollo
-Cross Platform
+Caracteristicas:
+
+- Modular
+- Preparado para el cloud
+- Open Source
+- Editores o herramientas de desarrollo
+- Cross Platform
 
 ASP.NET Core is a new open-source and cross-platform framework for building modern cloud based internet connected applications, such as web apps, IoT apps and mobile backends. 
 
 ASP.NET Core has a number of architectural changes that result in a much leaner and modular framework. ASP.NET Core is no longer based on System.Web.dll. It is based on a set of granular and well factored NuGet packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, improved performance, and decreased costs in a pay-for-what-you-use model.
-
-
 
 https://docs.microsoft.com/en-us/aspnet/core/
 
@@ -110,15 +123,101 @@ Open source y centrado en la comunidad
 
 ## ASP.NET Core Devs
 
-Pipeline and Middleware
-Tag Helpers
-Dependency Injection
+Program class:
+--------------
+Una aplicación ASP.NET Core es una aplicación de consola sencilla que crea un web server en el método "main". Esto es posible gracias al WebHostBuilder que nos permite configurar el web server y la clases de inicialización - startup class -.
+
+The Build and Run methods build the IWebHost object that will host theapp and start it listening for incoming HTTP requests.
+
+Startup:
+--------
+
+La clase Startup es donde definimos el "request handling pipeline" y donde se configuran todos los servicios necesarios por la aplicación. La clase Startup debe ser publica y contar con dos métodos: ConfigureServices y Configure.
+
+* ConfigureServices: defines thes ervices used by your app (such as the ASP.NET MVC, Coreframework, Entity Framework Core, Identity, etc.).
+
+* Configure: defines the middleware in the request pipeline.
+
+Services
+--------
+Los servicios son componentes que van a ser utilizados de forma concurrente por la aplicación (frameworks o servicios). Estos servicios están disponibles por medio de la inyección de dependencias (DI). ASP.NET Core incluye un contenedor de inversión de control (IoC) que por default permite la inyección por constructor.
+
+ASP.NET Core fue diseñado desde cero para soportar y aprovechar la inyección de dependencias por lo que incorpora un contenedor de inversión de control que se configura en la clase Startup, pero el mismo posee de capacidades reducidas y no pretende reemplazar otros contenedores.
+
+Cuando agregamos servicios al contenedor podemos especificarle el ciclo de vida del mismo: transient, scoped, singleton.
+
+Middleware
+----------
+El request pipeline de ASP.NET Core consiste en una secuencia de delegados de solicitud - request delegate -que son llamados uno después de otro.
+
+En ASP.NET Core nosotros definimos el request pipeline por medio de los Middleware. Cuando una petición llega a una aplicación ASP.NET Core, es procesada por los middlewares que han sido introducidos en el pipeline desde el método Configure() de la clase Startup, y que componen una cadena colaborativa de proceso de peticiones.
+
+Cada middleware puede ejecutar operaciones antes y despues de invocar al siguiente. Además es posible decidir si pasar la solicitud al siguiente delegado o interrunpir esta secuencia - short-circuiting - (por ejemplo el middleware de archivos staticos sirve el file, por lo que es inutil continuar con el resto).
+
+Host and Servers
+----------------
+Las aplicaciones ASP.NET Core requieren un host en el cual ejecutarse - generalmente una instancia de WebHostBuilder -. En las propiedades del webhost se especifica el server que manejara los request.
+
+ASP.NET Core incluye un servidor web multi-plataforma administrado llamado Kestrel que normalmente se ejecuta detrás de un servidor web de producción como IIS o nginx.
+
+UseKestrel creates the web server and hosts the code. 
+UseIISIntegration specifies IIS as the reverse proxy server.
+
+El host es responsable por la puesta en marcha de la aplicación y la gestión de su ciclo de vida. El server es response por aceptar los HTTP Request. El host está configurado para usar un determinado server, pero el server no tiene conocimiento del host.
+
+Cuando arrancamos el host "run" ponemos a andar el servidor.
+
+Content root
+------------
+Es el directorio donde se encuentra el contenido de la aplicación, como por ejemplo los archivos de las vistas MVC. Por defecto es la misma carpeta donde corre la aplicación.
+
+Web root
+--------
+Es el directorio de nuestra aplicación donde se encuentra el contenido público como por ejemplo recursos estáticos como archivos css, js o imagenes. 
+
+Configuration
+-------------
+ASP.NET Core usa un nuevo modelo de configuración basado en los pares nombre-valor. Este nuevo modelo no está basado en System.Configuration y el web.config, sino que extrae la información de un conjunto ordenado de proveedores de configuración. Los proveedores de configuración incorporados soportan una gran cantidad de formatos  de archivo (XML, JSON, INI) y variables de entorno (con información especifica a cada uno).
+
+En el constructor de la clase Startup leemos los valores de configuración desde un proveedor de configuración JSON que tiene dos variantes, configuración general y por diferentes entornos:
+
+ var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+           
+Environments
+------------
+ASP.NET Core introduces improved support for controlling application behavior across multiple environments,
+such as development, staging and production. Environment variables are used to indicate which environment
+the application is running in allowing th eapp to be configured appropriately.
+
+ASP.NET Corereferences a particular environmentvariable, ASPNETCORE_ENVIRONMENT to describetheenvironment
+theapplication is currently running in.This variablecan beset to any valueyou like, but three values are used by
+convention: Development , Staging ,and Production . You will find these values used in the samples and
+templates provided with ASP.NET Core. 
+
+By default:
+Launch.json > configurations > env > ASPNETCORE_ENVIRONMENT
+
+Otra opción:
+new WebHostBuilder().UseEnvironment("Development")
+
 
 ## KESTREL
 
-Servidor de aplicaciones ASP.NET Core, asincronico, multi plataforma, basado en Libuv. 
-No está pensado para extar expuesto hacia afuera, solamente de procesar request. 
-Sobre Kestrel deberíamos montar uns server proxy que cuente con carácteristicas como: virtual host, seguridad, loging, cache, etc.
+Las aplicaciones ASP.NET Core corren sobre una implementación de HTTP Server. Esta implementación de server escucha las solicitudes HTTP y las transfiere a la aplicación por medio de una instancia HTTPContext.
+
+Las implementaciones de web server disponibles son:
+- Kestrel
+- WebListener (Only Windows)
+
+Kestrek es un servidor de aplicaciones ASP.NET Core multi-plataforma, asincronico, basado en Libuv (librería I/O asyc cross-platform). Es el web server que ASP.NET Core incluye por default cuando creamos un nuevo proyecto.
+
+No está pensado para extar expuesto hacia afuera, solamente de procesar request. Por lo tanto sobre Kestrel deberíamos montar un reverse proxy server que cuente con carácteristicas como: virtual host, seguridad, loging, cache, etc.
+
+The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks.
 
 ## ASP.NET Core en Linux
 
@@ -143,9 +242,12 @@ Realizar modificaciones sobre el código (ver si no mostramos algo de middleware
 
 Ejecutar y debugear.
 
+Mostrar como podemos ejecutar la aplicación por consola usando el comando "dotnet run".
+
 Integración con Git:
 - Clonar repo en el directorio.
-- Git init?
+- git init
+- git remote add origin https://*.git
 
 Pushear cambios, bajar en Windows y ejecutarlo nuevamente.
 
