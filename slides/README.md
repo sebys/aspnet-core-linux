@@ -128,20 +128,21 @@ Al ser cross-platform podemos construir y ejecutar aplicaciones ASP.NET multi-pl
 
 Más información en la [documentación oficial](https://docs.microsoft.com/en-us/aspnet/core/).
 
-## Caracteristicas de ASP.NET Core
+## Características de ASP.NET Core
+
+Algunas características son:
 
 - Unifación proceso de creación de aplicaciones web UI y web API.
-- Integration of modern client-side frameworks and development workflows (gulp, grunt, bower, bootstrap, knockout.js, angular, less, sass, typescript, etc)
-- A cloud-ready environment-based configuration system
-- Inyección de dependencias integrado
-- New light-weight and modular HTTP request pipeline
-- Ability to host on IIS or self-host in your own process
-- Built on .NET Core, which supports true side-by-side app versioning
-- Ships entirely as NuGet packages
-- New tooling that simplifies modern web development
-- Open source y centrado en la comunidad
+- Intregación con modernos frameroks client-side y workflows de desarrollo (gulp, grunt, bower, bootstrap, knockout.js, angular, less, sass, typescript, etc).
+- Sistema de configuración basado en la nube.
+- Inyección de dependencias integrado.
+- Nuevo HTTP request pipeline, mucho más ligero y modular.
+- Capacidad para alojar en IIS or auto-hostearlo en nuestros propios procesos.
+- Construido en .NET Core, soportando escenarios side-by-side.
+- Nuevas herramientas que simplifican el desarrollo de aplicaciones web modernas.
+- Open source y centrado en la comunidad.
 
-## ASP.NET Core Devs
+## ASP.NET Core por dentro
 
 ###### Program class:
 
