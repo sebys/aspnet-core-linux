@@ -164,7 +164,7 @@ La clase `Startup` es el lugar donde definimos el *request handling pipeline* y 
 
 Los servicios son componentes que van a ser utilizados de forma concurrente por la aplicación (frameworks o servicios). Estos servicios están disponibles por medio de la inyección de dependencias (DI). ASP.NET Core incluye de serie un contenedor de inversión de control (IoC) que por default permite la inyección por constructor.
 
-ASP.NET Core fue diseñado desde cero para soportar y aprovechar la inyección de dependencias por lo que incorpora un contenedor de inversión de control que se configura en el método `Configure` la clase `Startup`, pero el mismo posee de capacidades reducidas y no pretende reemplazar otros contenedores.
+ASP.NET Core fue diseñado desde cero para soportar y aprovechar la inyección de dependencias por lo que incorpora un contenedor de inversión de control que se configura en el método `ConfigureServices` la clase `Startup`, pero el mismo posee de capacidades reducidas y no pretende reemplazar otros contenedores.
 
 ```
 public void ConfigureServices(IServiceCollection services)
@@ -217,16 +217,37 @@ Cada middleware puede ejecutar operaciones antes y despues de invocar al siguien
 
 ###### Host and Servers
 
-Las aplicaciones ASP.NET Core requieren un host en el cual ejecutarse - generalmente una instancia de `WebHostBuilder` -. En las propiedades del webhost se especifica el server que manejara los request.
+Las aplicaciones ASP.NET Core requieren un host en el cual ejecutarse - generalmente una instancia de `WebHostBuilder` -. Dentro de la configuración del webhost debemos especificar el server que se encargará de atender los request y cual es la configuración de *puesta en marcha* de la aplicación.
 
-ASP.NET Core incluye un servidor web multi-plataforma administrado llamado Kestrel que normalmente se ejecuta detrás de un servidor web de producción como IIS o nginx.
+```
+var host = new WebHostBuilder()
+    .UseKestrel()
+    .UseContentRoot(Directory.GetCurrentDirectory())
+    .UseIISIntegration()
+    .UseStartup<Startup>()
+    .Build();
 
-- `UseKestrel`: creates the web server and hosts the code. 
-- `UseIISIntegration`: specifies IIS as the reverse proxy server.
+host.Run();
+```
+Las aplicaciones ASP.NET Core corren sobre una implementación de HTTP Server. Esta implementación de server escucha las solicitudes HTTP y las transfiere a la aplicación por medio de una instancia `HttpContext`.
 
-El host es responsable por la puesta en marcha de la aplicación y la gestión de su ciclo de vida. El server es responsable de aceptar los HTTP Request. El host está configurado para usar un determinado server, pero el server no tiene conocimiento del host.
+Las implementaciones de web server disponibles son:
 
-Cuando arrancamos el host "run" ponemos a andar el servidor.
+- Kestrel
+- WebListener (solo en Windows)
+
+ASP.NET Core incluye por default un servidor web multi-plataforma llamado Kestrel, el cual normalmente se ejecuta detrás de un servidor web de producción como IIS o nginx. 
+
+Las propiedades que permiten configurarlo son:
+
+- `UseKestrel`: crea el web server y hostea el código. 
+- `UseIISIntegration`: especificamos IIS como el reverse proxy server.
+
+El host es responsable por la puesta en marcha de la aplicación y la gestión de su ciclo de vida. El server es responsable de atender los HTTP Request y servircelos al host por medio de una instancia de `HttpContext`. 
+
+El host está configurado para usar un determinado server, pero el server no tiene conocimiento del host.
+
+Cuando arrancamos el host por medio del método `run` ponemos a andar el servidor.
 
 ###### Content root
 
@@ -238,16 +259,18 @@ Es el directorio de nuestra aplicación donde se encuentra el contenido público
 
 ###### Configuration
 
-ASP.NET Core usa un nuevo modelo de configuración basado en los pares nombre-valor. Este nuevo modelo no está basado en System.Configuration y el web.config, sino que extrae la información de un conjunto ordenado de proveedores de configuración. Los proveedores de configuración incorporados soportan una gran cantidad de formatos  de archivo (XML, JSON, INI) y variables de entorno (con información especifica a cada uno).
+ASP.NET Core usa un nuevo modelo de configuración basado en pares nombre-valor. Este nuevo modelo no está basado en `System.Configuration` y el `web.config`, sino que extrae la información de un conjunto ordenado de proveedores de configuración. Los proveedores de configuración incorporados soportan una gran cantidad de formatos de archivo (XML, JSON, INI) y variables de entorno (con información especifica a cada uno).
 
-En el constructor de la clase Startup leemos los valores de configuración desde un proveedor de configuración JSON que tiene dos variantes, configuración general y por diferentes entornos:
+En el constructor de la clase `Startup` por defecto leemos los valores de configuración desde un proveedor de configuración JSON que tiene dos variantes: configuración general y por entornos:
 
+```
  var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-           
+```
+
 ###### Environments
 
 ASP.NET Core introduces improved support for controlling application behavior across multiple environments,
@@ -259,20 +282,13 @@ theapplication is currently running in.This variablecan beset to any valueyou li
 convention: Development , Staging ,and Production . You will find these values used in the samples and
 templates provided with ASP.NET Core. 
 
-By default:
-Launch.json > configurations > env > ASPNETCORE_ENVIRONMENT
+Por default la configuración se encuentra en:
+`Launch.json > configurations > env > ASPNETCORE_ENVIRONMENT`
 
 Otra opción:
-new WebHostBuilder().UseEnvironment("Development")
+`new WebHostBuilder().UseEnvironment("Development")`
 
 ## KESTREL
-
-Las aplicaciones ASP.NET Core corren sobre una implementación de HTTP Server. Esta implementación de server escucha las solicitudes HTTP y las transfiere a la aplicación por medio de una instancia `HTTPContext`.
-
-Las implementaciones de web server disponibles son:
-
-- Kestrel
-- WebListener (solo en Windows)
 
 Kestrek es un servidor de aplicaciones ASP.NET Core multi-plataforma, asincronico, basado en Libuv (librería I/O async cross-platform). Es el web server que ASP.NET Core incluye por default cuando creamos un nuevo proyecto.
 
@@ -282,9 +298,8 @@ The most important reason for using a reverse proxy for edge deployments (expose
 
 ## ASP.NET Core en Linux (DEMO)
 
-Instalar la última versión de .NET Core: https://www.microsoft.com/net/core#linuxubuntu
-
-Instalar Visual Studio Code con la extensión C#.
+1. Instalar la última versión de .NET Core: https://www.microsoft.com/net/core#linuxubuntu
+1. Instalar Visual Studio Code con la extensión C#.
 
 Crear directorio "demo" y correr el comando "dotnet new mvc" para crear un proyecto web asp.net core mvc.
 
