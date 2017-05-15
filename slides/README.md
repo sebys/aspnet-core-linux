@@ -21,37 +21,37 @@ El contenido de esta presentación abarca una introducción a .NET Framework, .N
 Esta compuesto de:
 
 - **Lenguajes y Compiladores para los lenguajes**: no generan código nativo, sino código IL (intermediate language).
-- **Runtime de ejecución**: interpreta el código IL y lo comvierte a código nativo - JIT -. Servicios: Garbage collector, compilador JIT.
+- **Runtime de ejecución**: interpreta el código IL y lo convierte a código nativo que es ejecutado por la plataforma.
 - **Base Class Library**: librería base.
 
-Funcionamiento: 
+Funcionamiento:
 
 ![Funcionamiento del framework](https://github.com/sebys/aspnet-core-linux/blob/master/slides/img/netframework.png)
 
 Cuando compilamos nuestra aplicación, el compilador del lenguaje genera código IL.
 
-Cuando el SO detecta que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo *just in time* el código IL en código nativo que es ejecutado por la plataforma.
+Cuando el SO detecta que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo *just in time* el código IL en código nativo que es ejecutado por la plataforma. El runtime además de ofrecer el compilador JIT nos provee de otros servicios como el Garbage Collector.
 
 ## .NET Core
 
 .NET Core es una versión modular de .NET Framework diseñada para que sea portátil entre plataformas.
 
-Caracteristicas:
+Características:
 
 - **Open Source**: compiladores, runtime, BLC. 
-- **Multiplataforma**: functiona en Windows, Linux y iOS.
+- **Multiplataforma**: funciona en Windows, Linux y iOS.
 - **Modular**: solo usas lo que necesitas (Nuget).
-- **CLI**: command line interface.
+- **CLI**: nos provee de herramientas de línea de comando.
 
-Es importante tener en cuenta que el "ejecutable" final esta compuesto por el compilador y el runtime. Esto me permite tener distintas aplicaciones corriendo con distintas versiones de .NET, pero lo más importante es que ya no nesecitamos intarlar el framework en los servidores. Desplegar aplicaciones resulta más sencillo.
+.NET Core es open source, incluyendo el runtime y las librerías que componen el framework. Todo el código fuente está disponible en [GitHub](https://github.com/dotnet).
 
-Al ser modular, solo uso lo que necesito por lo el resultado es un framework bien pequeño - 11 MB - comparado al monolitico .NET Framework. La gestión de dependencias se hacen por medio de Nuget.
+Tal vez el atractivo más grande es que podemos correr nuestras aplicaciones .NET en cualquier plataforma. Tener en cuenta que en Linux solo se tiene soporte en las distribuciones LTS.
 
-Gracias a CLI podemos crear, ejecutar y deplegar aplicaciones .NET CORE desde la consola - comando `dotnet` -.
- 
-En Linux solo se tiene soporte en las distribuciones LTS.
+Al ser modular solo uso lo que necesito, por lo el resultado es un framework muy pequeño comparado al monolítico .NET Framework. La gestión de dependencias se hacen por medio del gestor de paquetes Nuget.
 
-Código fuente: https://github.com/dotnet
+Es importante tener en cuenta que el "ejecutable" final esta compuesto por el compilador y el runtime. Esto me permite tener distintas aplicaciones corriendo con distintas versiones de .NET, pero lo más importante es que ya no necesitamos instalar el framework en los servidores. Desplegar aplicaciones resulta más sencillo.
+
+Gracias a CLI podemos crear, ejecutar y desplegar aplicaciones .NET CORE desde la consola utilizando el comando `dotnet`.
 
 ## .NET CLI
 
