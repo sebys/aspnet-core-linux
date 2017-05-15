@@ -89,13 +89,13 @@ Las alternativas disponibles son:
 
 ## Evolución de ASP.NET
 
-![Evolución de ASP.NET](https://github.com/sebys/aspnet-core-linux/blob/master/slides/img/evolution-aspnet.jpg)
+![Evolución de ASP.NET](https://github.com/sebys/aspnet-core-linux/blob/master/slides/img/aspnet-framework-evolution.png)
 
 El framework ASP.NET a sufrido grandes cambios a traves del tiempo, adaptandose a las necesidades de cada momento:
 
-- **ASP**: programación similar a php con vbscript. Lanzado en el año 1996.
-- **ASP.NET WebForm**: en pleno surgimiento de la web, se tuvo la necesidad de atraer desarrolladores de aplicaciones de escritorio a la plataforma web. Lanzado en el año 2002.
-- **ASP.NET MVC**: integración con los estandares web (Javascript, HTML, etc). Lanzado en el año 2009.
+- **ASP**: programación similar a php con vbscript.
+- **ASP.NET WebForm**: en pleno surgimiento de la web, se tuvo la necesidad de atraer desarrolladores de aplicaciones de escritorio a la plataforma web.
+- **ASP.NET MVC**: integración con los estandares web (Javascript, HTML, etc).
 - **ASP.NET CORE**: modular, preparado para el cloud, multi plataforma, desacoplado de Windows y de IIS.
 
 Las necesidades de las aplicaciones web fueron cambiando a traves de los años, hoy necesitamos estar conectados todo el tiempo pero hace 10 años atrás la necesidad principal era servir documentos. 
