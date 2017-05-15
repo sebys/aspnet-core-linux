@@ -98,9 +98,9 @@ Actualmente necesitamos servidores web optimizados para atender gran cantidad de
 
 ## ASP.NET Core
 
-ASP.NET Core is a new open-source and cross-platform framework for building modern cloud based internet connected applications, such as web apps, IoT apps and mobile backends. 
+ASP.NET Cores es un framework open-source y multi-plataforma para construir modernas aplicaciones basadas en la nube conectadas a internet, como web apps, IoT apps y mobile backends.
 
-Caracteristicas:
+Características principales:
 
 - Modular
 - Preparado para el cloud
@@ -108,10 +108,9 @@ Caracteristicas:
 - Editores o herramientas de desarrollo
 - Cross Platform
 
-
 ASP.NET Core has a number of architectural changes that result in a much leaner and modular framework. ASP.NET Core is no longer based on System.Web.dll. It is based on a set of granular and well factored NuGet packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, improved performance, and decreased costs in a pay-for-what-you-use model.
 
-https://docs.microsoft.com/en-us/aspnet/core/
+Más información en la [documentación oficial](https://docs.microsoft.com/en-us/aspnet/core/).
 
 ## ASP.NET Core Caracteristicas
 
