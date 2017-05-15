@@ -26,11 +26,11 @@ Esta compuesto de:
 
 Funcionamiento: 
 
-![Funcionamiento del framework](/img/netframework.png)
+![Funcionamiento del framework](https://github.com/sebys/aspnet-core-linux/blob/master/slides/img/netframework.png)
 
 Cuando compilamos nuestra aplicación, el compilador del lenguaje genera código IL.
 
-Cuando el SO detecta que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo JIT el código IL en código nativo que es ejecutado por la plataforma.
+Cuando el SO detecta que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo *just in time* el código IL en código nativo que es ejecutado por la plataforma.
 
 ## .NET Core
 
