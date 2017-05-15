@@ -1,7 +1,7 @@
 Contenido sobre la presentación ASP.NET CORE en Linux.
 
 ## Slides
-- [Título](#titulo)
+- [Introducción](#introducción)
 - [.NET Framework](#.net-framework) 
 - [.NET Core](#.net-core)
 - [.NET CLI](#.net-cli) 
@@ -10,7 +10,7 @@ Contenido sobre la presentación ASP.NET CORE en Linux.
 - [ASP.NET Core](#asp.net_core)
 - [Kestrel](#kestrel)
 
-## Título
+## Introducción
 
 El contenido de esta presentación abarca una introducción a .NET Framework, .NET Core, ASP.NET y ASP.NET Core. La demo propuesta consta de la creación y ejecución de aplicaciones ASP.NET Core en Linux - distribución Ubuntu 16.04 -.
 
@@ -156,15 +156,15 @@ Los métodos `Build` y `Run` del objeto `IWebHost` hostean la aplicación y comi
 
 La clase `Startup` es el lugar donde definimos el *request handling pipeline* y donde se configuran todos los servicios necesarios por la aplicación. La clase `Startup` debe ser publica y contar con dos métodos: `ConfigureServices` y `Configure`.
 
-- `ConfigureServices`: definimos los servicios/frameworks utilizados por la aplicación (como por ejemplo ASP.NET MVC Core framework, Entity Framework Core, Identity, etc.).
+- `ConfigureServices`: es el lugar donde definimos los servicios/frameworks utilizados por la aplicación (como por ejemplo ASP.NET MVC Core framework, Entity Framework Core, Identity, etc.).
 
-- `Configurev`: definimos los middleware en el request pipeline.
+- `Configurev`: es el lugar donde definimos los middleware del request pipeline.
 
 ###### Services
 
-Los servicios son componentes que van a ser utilizados de forma concurrente por la aplicación (frameworks o servicios). Estos servicios están disponibles por medio de la inyección de dependencias (DI). ASP.NET Core incluye un contenedor de inversión de control (IoC) que por default permite la inyección por constructor.
+Los servicios son componentes que van a ser utilizados de forma concurrente por la aplicación (frameworks o servicios). Estos servicios están disponibles por medio de la inyección de dependencias (DI). ASP.NET Core incluye de serie un contenedor de inversión de control (IoC) que por default permite la inyección por constructor.
 
-ASP.NET Core fue diseñado desde cero para soportar y aprovechar la inyección de dependencias por lo que incorpora un contenedor de inversión de control que se configura en la clase Startup, pero el mismo posee de capacidades reducidas y no pretende reemplazar otros contenedores.
+ASP.NET Core fue diseñado desde cero para soportar y aprovechar la inyección de dependencias por lo que incorpora un contenedor de inversión de control que se configura en la clase `Startup`, pero el mismo posee de capacidades reducidas y no pretende reemplazar otros contenedores.
 
 Cuando agregamos servicios al contenedor podemos especificarle el ciclo de vida del mismo: transient, scoped, singleton.
 
@@ -172,20 +172,20 @@ Cuando agregamos servicios al contenedor podemos especificarle el ciclo de vida 
 
 El request pipeline de ASP.NET Core consiste en una secuencia de delegados de solicitud - request delegate -que son llamados uno después de otro.
 
-En ASP.NET Core nosotros definimos el request pipeline por medio de los Middleware. Cuando una petición llega a una aplicación ASP.NET Core, es procesada por los middlewares que han sido introducidos en el pipeline desde el método Configure() de la clase Startup, y que componen una cadena colaborativa de proceso de peticiones.
+En ASP.NET Core nosotros definimos el request pipeline por medio de los Middleware. Cuando una petición llega a una aplicación ASP.NET Core, es procesada por los middlewares que han sido introducidos en el pipeline desde el método `Configure` de la clase `Startup`, y que componen una cadena colaborativa de proceso de peticiones.
 
-Cada middleware puede ejecutar operaciones antes y despues de invocar al siguiente. Además es posible decidir si pasar la solicitud al siguiente delegado o interrunpir esta secuencia - short-circuiting - (por ejemplo el middleware de archivos staticos sirve el file, por lo que es inutil continuar con el resto).
+Cada middleware puede ejecutar operaciones antes y despues de invocar al siguiente. Además es posible decidir si pasamos la solicitud al siguiente delegado o interrunpimos esta secuencia - short-circuiting - (por ejemplo el middleware de archivos staticos sirve el file, por lo que es inutil continuar con el resto).
 
 ###### Host and Servers
 
-Las aplicaciones ASP.NET Core requieren un host en el cual ejecutarse - generalmente una instancia de WebHostBuilder -. En las propiedades del webhost se especifica el server que manejara los request.
+Las aplicaciones ASP.NET Core requieren un host en el cual ejecutarse - generalmente una instancia de `WebHostBuilder` -. En las propiedades del webhost se especifica el server que manejara los request.
 
 ASP.NET Core incluye un servidor web multi-plataforma administrado llamado Kestrel que normalmente se ejecuta detrás de un servidor web de producción como IIS o nginx.
 
-- UseKestrel creates the web server and hosts the code. 
-- UseIISIntegration specifies IIS as the reverse proxy server.
+- `UseKestrel`: creates the web server and hosts the code. 
+- `UseIISIntegration`: specifies IIS as the reverse proxy server.
 
-El host es responsable por la puesta en marcha de la aplicación y la gestión de su ciclo de vida. El server es response por aceptar los HTTP Request. El host está configurado para usar un determinado server, pero el server no tiene conocimiento del host.
+El host es responsable por la puesta en marcha de la aplicación y la gestión de su ciclo de vida. El server es responsable de aceptar los HTTP Request. El host está configurado para usar un determinado server, pero el server no tiene conocimiento del host.
 
 Cuando arrancamos el host "run" ponemos a andar el servidor.
 
@@ -228,15 +228,16 @@ new WebHostBuilder().UseEnvironment("Development")
 
 ## KESTREL
 
-Las aplicaciones ASP.NET Core corren sobre una implementación de HTTP Server. Esta implementación de server escucha las solicitudes HTTP y las transfiere a la aplicación por medio de una instancia HTTPContext.
+Las aplicaciones ASP.NET Core corren sobre una implementación de HTTP Server. Esta implementación de server escucha las solicitudes HTTP y las transfiere a la aplicación por medio de una instancia `HTTPContext`.
 
 Las implementaciones de web server disponibles son:
+
 - Kestrel
-- WebListener (Only Windows)
+- WebListener (solo en Windows)
 
-Kestrek es un servidor de aplicaciones ASP.NET Core multi-plataforma, asincronico, basado en Libuv (librería I/O asyc cross-platform). Es el web server que ASP.NET Core incluye por default cuando creamos un nuevo proyecto.
+Kestrek es un servidor de aplicaciones ASP.NET Core multi-plataforma, asincronico, basado en Libuv (librería I/O async cross-platform). Es el web server que ASP.NET Core incluye por default cuando creamos un nuevo proyecto.
 
-No está pensado para extar expuesto hacia afuera, solamente de procesar request. Por lo tanto sobre Kestrel deberíamos montar un reverse proxy server que cuente con carácteristicas como: virtual host, seguridad, loging, cache, etc.
+No está pensado para extar expuesto hacia afuera, solamente para procesar requests. Por lo tanto sobre Kestrel deberíamos montar un reverse proxy server que cuente con carácteristicas como: virtual host, seguridad, loging, cache, etc.
 
 The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks.
 
