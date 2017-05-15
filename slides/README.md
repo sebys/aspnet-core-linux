@@ -32,6 +32,8 @@ Cuando compilamos nuestra aplicación, el compilador del lenguaje genera código
 
 Cuando el SO detecta que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo *just in time* el código IL en código nativo que es ejecutado por la plataforma. El runtime además de ofrecer el compilador JIT nos provee de otros servicios como el Garbage Collector.
 
+Full .NET Framework incluye todas las APIS y asegura compatibilidad par atrás (generalmente viene con el SO).
+
 ## .NET Core
 
 .NET Core es una versión modular de .NET Framework diseñada para que sea portátil entre plataformas.
@@ -52,6 +54,8 @@ Al ser modular solo uso lo que necesito, por lo el resultado es un framework muy
 Es importante tener en cuenta que el "ejecutable" final esta compuesto por el compilador y el runtime. Esto me permite tener distintas aplicaciones corriendo con distintas versiones de .NET, pero lo más importante es que ya no necesitamos instalar el framework en los servidores. Desplegar aplicaciones resulta más sencillo.
 
 Gracias a CLI podemos crear, ejecutar y desplegar aplicaciones .NET Core desde la consola utilizando el comando `dotnet`.
+
+Posee dos grandes frameworks: ASP.NET CORE y UWP
 
 ## .NET CLI
 
@@ -108,7 +112,12 @@ Características principales:
 - Editores o herramientas de desarrollo
 - Cross Platform
 
-ASP.NET Core has a number of architectural changes that result in a much leaner and modular framework. ASP.NET Core is no longer based on System.Web.dll. It is based on a set of granular and well factored NuGet packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, improved performance, and decreased costs in a pay-for-what-you-use model.
+ASP.NET Core has a number of architectural changes that result in a much leaner and modular framework. ASP.NET Core is no longer based on System.Web.dll (Con eso se logra desacoplar ASP.NET de Windows y de IIS.). It is based on a set of granular and well factored NuGet packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, improved performance, and decreased costs in a pay-for-what-you-use model.
+
+Una aplicación ASP.NET CORE es un app CORE cualquiera (tiene un program, un main), solo que incluye los paquetes de ASP.NET
+No hay dependencias del web server.
+
+Al ser cross-platform podemos construir y ejecutar aplicaciones ASP.NET multiplataforma en Windows, Mac y Linux.
 
 Más información en la [documentación oficial](https://docs.microsoft.com/en-us/aspnet/core/).
 
@@ -123,7 +132,7 @@ Ability to host on IIS or self-host in your own process
 Built on .NET Core, which supports true side-by-side app versioning
 Ships entirely as NuGet packages
 New tooling that simplifies modern web development
-Construir y ejecutar aplicaciones ASP.NET multiplataforma en Windows, Mac y Linux
+
 Open source y centrado en la comunidad
 
 ## ASP.NET Core Devs
