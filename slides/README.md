@@ -51,13 +51,15 @@ Al ser modular solo uso lo que necesito, por lo el resultado es un framework muy
 
 Es importante tener en cuenta que el "ejecutable" final esta compuesto por el compilador y el runtime. Esto me permite tener distintas aplicaciones corriendo con distintas versiones de .NET, pero lo más importante es que ya no necesitamos instalar el framework en los servidores. Desplegar aplicaciones resulta más sencillo.
 
-Gracias a CLI podemos crear, ejecutar y desplegar aplicaciones .NET CORE desde la consola utilizando el comando `dotnet`.
+Gracias a CLI podemos crear, ejecutar y desplegar aplicaciones .NET Core desde la consola utilizando el comando `dotnet`.
 
 ## .NET CLI
 
-.NET Command Line Interface: herramienta para compilar, desplegar y administrar aplicaciones .NET en todas las plataformas. Desde el comienzo de punto .NET fue sufriendo algunos cambios: dnx ... dotnet.
+La **.NET Command Line Interface** es herramienta que nos permite compilar, desplegar y administrar aplicaciones .NET Core en todas las plataformas. 
 
-Comandos de la herramienta de línea de comandos "dotnet":
+Desde el surgimiento de .NET Core fue sufriendo algunos cambios pasando del comando `dnx` o `dnuv` hasta `dotnet`.
+
+Las opciones disponibles para el comando `dotnet`:
 
 - **new**
 - **restore**
@@ -67,9 +69,9 @@ Comandos de la herramienta de línea de comandos "dotnet":
 - **test**
 - **pack**
 
-The CLI is a foundation upon which higher-level tools, such as Integrated Development Environments (IDEs), editors, and build orchestrators, can rest.
+CLI nos permite montar herramientas de nivel superior, como entornos de desarrollo integrado (IDEs), editores y build orchestrators.
 
-https://docs.microsoft.com/en-us/dotnet/articles/core/tools/
+Más información en la [documentación oficial](https://docs.microsoft.com/en-us/dotnet/articles/core/tools/).
 
 ## ASP.NET
 
