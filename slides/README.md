@@ -112,12 +112,17 @@ Características principales:
 - Editores o herramientas de desarrollo
 - Cross Platform
 
-ASP.NET Core has a number of architectural changes that result in a much leaner and modular framework. ASP.NET Core is no longer based on System.Web.dll (Con eso se logra desacoplar ASP.NET de Windows y de IIS.). It is based on a set of granular and well factored NuGet packages. This allows you to optimize your app to include just the NuGet packages you need. The benefits of a smaller app surface area include tighter security, reduced servicing, improved performance, and decreased costs in a pay-for-what-you-use model.
+ASP.NET Core tiene una serie de cambios arquitectonicos que resultan en un framework mucho más ligero y modular. ASP.NET Core ya nose basa en System.Web.dll (logrando desacoplar ASP.NET de Windows y de IIS). Este se basa en conjunto de paquetes NuGet, lo que nos permite optimizar nuestra aplicación ya que solo incluimos los paquetes que necesitamos.
 
-Una aplicación ASP.NET CORE es un app CORE cualquiera (tiene un program, un main), solo que incluye los paquetes de ASP.NET
-No hay dependencias del web server.
+Una aplicación ASP.NET CORE es un app CORE cualquiera (tiene un clase program con un método main), solo que incluye los paquetes de ASP.NET. Como toda aplicación .NET CORE la misma esta compuesta por el compiladores y runtime (no se requiere tener instalado nada en el servidor).
 
-Al ser cross-platform podemos construir y ejecutar aplicaciones ASP.NET multiplataforma en Windows, Mac y Linux.
+Esta preparado para el cloud, por que no hay dependencias del web server lo que nos permite publicar nuestras apps en cualquier lado.
+
+El código fuente de ASP.NET Core está disponible en [GitHub](https://github.com/aspnet/Home/blob/dev/CONTRIBUTING.md).
+
+Podemos escribir nuestras aplicaciones en cualquier editor o herramienta de desarrollo moderna (desde Visual Studio o Visual Studio Code hasta Atom o Notepad++). Con Visual Studio o Code tenemos soporte para debug, cosa que otras tools no soportan.
+
+Al ser cross-platform podemos construir y ejecutar aplicaciones ASP.NET multi-plataforma en Windows, Mac y Linux.
 
 Más información en la [documentación oficial](https://docs.microsoft.com/en-us/aspnet/core/).
 
