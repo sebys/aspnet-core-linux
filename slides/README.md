@@ -24,9 +24,9 @@ Esta compuesto de:
 - **Runtime de ejecución**: interpreta el código IL y lo combierte a código nativo - JIT -. Servicios que nos ofrece: Garbage collector, compilador JIT.
 - **Base Class Library**: librería base.
 
-Como funciona: 
+Funcionamiento: 
 
-![Funcionamiento del framework](https://github.com/sebys/aspnet-core-linux/tree/master/slides/img/netframework.svg)
+![Funcionamiento del framework](https://github.com/sebys/aspnet-core-linux/tree/master/slides/img/netframework.png)
 
 Cuando compilamos nuestra aplicación, el compilador del lenguaje genera código IL.
 
