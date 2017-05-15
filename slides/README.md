@@ -104,7 +104,7 @@ Actualmente necesitamos servidores web optimizados para atender gran cantidad de
 
 ## ASP.NET Core
 
-ASP.NET Cores es un framework open-source y multi-plataforma para construir modernas aplicaciones basadas en la nube conectadas a internet, como web apps, IoT apps y mobile backends.
+ASP.NET Cores es un framework open-source y multi-plataforma para construir modernas aplicaciones conectadas a internet basadas en la nube, como web apps, IoT apps y mobile backends.
 
 Características principales:
 
@@ -150,15 +150,15 @@ Algunas características son:
 
 Una aplicación ASP.NET Core es una aplicación de consola sencilla que crea un web server en el método `Main`. Esto es posible gracias a `WebHostBuilder` que nos permite configurar el web server y la clases de inicialización - startup class -.
 
-The `Build` and `Run` methods build the `IWebHost` object that will host theapp and start it listening for incoming HTTP requests.
+Los métodos `Build` y `Run` del objeto `IWebHost` hostean la aplicación y comienzan a escuchar peticiones HTTP.
 
 ###### Startup:
 
-La clase Startup es donde definimos el "request handling pipeline" y donde se configuran todos los servicios necesarios por la aplicación. La clase Startup debe ser publica y contar con dos métodos: ConfigureServices y Configure.
+La clase `Startup` es el lugar donde definimos el *request handling pipeline* y donde se configuran todos los servicios necesarios por la aplicación. La clase `Startup` debe ser publica y contar con dos métodos: `ConfigureServices` y `Configure`.
 
-* ConfigureServices: defines thes ervices used by your app (such as the ASP.NET MVC, Coreframework, Entity Framework Core, Identity, etc.).
+- `ConfigureServices`: definimos los servicios/frameworks utilizados por la aplicación (como por ejemplo ASP.NET MVC Core framework, Entity Framework Core, Identity, etc.).
 
-* Configure: defines the middleware in the request pipeline.
+- `Configurev`: definimos los middleware en el request pipeline.
 
 ###### Services
 
