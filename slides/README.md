@@ -164,7 +164,18 @@ La clase `Startup` es el lugar donde definimos el *request handling pipeline* y 
 
 Los servicios son componentes que van a ser utilizados de forma concurrente por la aplicación (frameworks o servicios). Estos servicios están disponibles por medio de la inyección de dependencias (DI). ASP.NET Core incluye de serie un contenedor de inversión de control (IoC) que por default permite la inyección por constructor.
 
-ASP.NET Core fue diseñado desde cero para soportar y aprovechar la inyección de dependencias por lo que incorpora un contenedor de inversión de control que se configura en la clase `Startup`, pero el mismo posee de capacidades reducidas y no pretende reemplazar otros contenedores.
+ASP.NET Core fue diseñado desde cero para soportar y aprovechar la inyección de dependencias por lo que incorpora un contenedor de inversión de control que se configura en el método `Configure` la clase `Startup`, pero el mismo posee de capacidades reducidas y no pretende reemplazar otros contenedores.
+
+```
+public void ConfigureServices(IServiceCollection services)
+{
+    // Add configuration service.
+    services.AddSingleton<IConfiguration>(Configuration);
+
+    // Add framework service.
+    services.AddMvc();
+}
+```
 
 Cuando agregamos servicios al contenedor podemos especificarle el ciclo de vida del mismo: transient, scoped, singleton.
 
@@ -173,6 +184,34 @@ Cuando agregamos servicios al contenedor podemos especificarle el ciclo de vida 
 El request pipeline de ASP.NET Core consiste en una secuencia de delegados de solicitud - request delegate -que son llamados uno después de otro.
 
 En ASP.NET Core nosotros definimos el request pipeline por medio de los Middleware. Cuando una petición llega a una aplicación ASP.NET Core, es procesada por los middlewares que han sido introducidos en el pipeline desde el método `Configure` de la clase `Startup`, y que componen una cadena colaborativa de proceso de peticiones.
+
+```
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    // Call first to catch exceptions
+    // thrown in the following middleware.
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+        app.UseBrowserLink();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Home/Error");
+    }
+
+    // Return static files and end pipeline.
+    app.UseStaticFiles();
+
+    // Add MVC to the request pipeline.
+    app.UseMvc(routes =>
+    {
+        routes.MapRoute(
+            name: "default",
+            template: "{controller=Home}/{action=Index}/{id?}");
+    });
+}
+```
 
 Cada middleware puede ejecutar operaciones antes y despues de invocar al siguiente. Además es posible decidir si pasamos la solicitud al siguiente delegado o interrunpimos esta secuencia - short-circuiting - (por ejemplo el middleware de archivos staticos sirve el file, por lo que es inutil continuar con el resto).
 
