@@ -26,8 +26,7 @@ Esta compuesto de:
 
 Como funciona: 
 
-![Imagen sobre el funcionamiento del framework]
-(https://github.com/sebys/aspnet-core-linux/tree/master/slides/img/netframework.svg)
+![Funcionamiento del framework](https://github.com/sebys/aspnet-core-linux/tree/master/slides/img/netframework.svg)
 
 Cuando compilamos nuestra aplicación, el compilador del lenguaje genera código IL.
 
