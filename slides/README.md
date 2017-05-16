@@ -8,6 +8,8 @@ Contenido sobre la presentación ASP.NET CORE en Linux.
 - [ASP.NET](#asp.net)
 - [Evolución de ASP.NET](#evolucion_de_asp.net)
 - [ASP.NET Core](#asp.net_core)
+- [Características de ASP.NET Core](#características_de_asp.net_core)
+- [ASP.NET Core por dentro](#asp.net_core_por_dentro)
 - [Kestrel](#kestrel)
 
 ## Introducción
@@ -275,28 +277,23 @@ En el constructor de la clase `Startup` por defecto leemos los valores de config
 
 ###### Environments
 
-ASP.NET Core introduces improved support for controlling application behavior across multiple environments,
-such as development, staging and production. Environment variables are used to indicate which environment
-the application is running in allowing th eapp to be configured appropriately.
+ASP.NET introduce un mejor soporte para controlar nuestra aplicación a traves de multiples entornos, como desarrollo, staging y producción.Las variables de entorno son usadas para indicar en que ambiente la aplicación esta corriendo permitiendo configurarla correctamente.
 
-ASP.NET Corereferences a particular environmentvariable, ASPNETCORE_ENVIRONMENT to describetheenvironment
-theapplication is currently running in.This variablecan beset to any valueyou like, but three values are used by
-convention: Development , Staging ,and Production . You will find these values used in the samples and
-templates provided with ASP.NET Core. 
+La variable de entorno por defecto es `ASPNETCORE_ENVIRONMENT` que describe el ambiente en el que la aplicación se ejecuta. Esta variable puede tener cualquier valor, pero por convensión se utilizan los siguientes tres: `Development`, `Staging` y `Production`.
 
-Por default la configuración se encuentra en:
-`Launch.json > configurations > env > ASPNETCORE_ENVIRONMENT`
+La configuración de la variable de entorno se encuentra en:
+`launch.json > configurations > env > ASPNETCORE_ENVIRONMENT`
 
-Otra opción:
+Otra opción es definirla dentro de la configuración del webhost builder:
 `new WebHostBuilder().UseEnvironment("Development")`
 
 ## KESTREL
 
-Kestrek es un servidor de aplicaciones ASP.NET Core multi-plataforma, asincronico, basado en Libuv (librería I/O async cross-platform). Es el web server que ASP.NET Core incluye por default cuando creamos un nuevo proyecto.
+Kestrek es un servidor de aplicaciones ASP.NET Core multi-plataforma, asincronico, basado en Libuv (librería I/O async cross-platform). 
 
-No está pensado para extar expuesto hacia afuera, solamente para procesar requests. Por lo tanto sobre Kestrel deberíamos montar un reverse proxy server que cuente con carácteristicas como: virtual host, seguridad, loging, cache, etc.
+Es el web server que ASP.NET Core incluye por default cuando creamos un nuevo proyecto.
 
-The most important reason for using a reverse proxy for edge deployments (exposed to traffic from the Internet) is security. Kestrel is relatively new and does not yet have a full complement of defenses against attacks.
+No está pensado para extar expuesto hacia afuera, solamente para procesar requests. Por lo tanto sobre Kestrel deberíamos montar un reverse proxy server que cuente con carácteristicas como: virtual host, seguridad, login, cache, etc. La razón más importante de usar un servidor proxy (expuestos al tráfico de internet) es la seguridad. Kestrel es relativamente nuevo y aún no cuenta con un conjunto completo de defensas contra ataques.
 
 ## ASP.NET Core en Linux (DEMO)
 
