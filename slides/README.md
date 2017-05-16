@@ -89,18 +89,20 @@ Las alternativas disponibles son:
 
 ## Evolución de ASP.NET
 
-![Evolución de ASP.NET](https://github.com/sebys/aspnet-core-linux/blob/master/slides/img/aspnet-framework-evolution.png)
-
 El framework ASP.NET a sufrido grandes cambios a traves del tiempo, adaptandose a las necesidades de cada momento:
 
-- **ASP**: programación similar a php con vbscript.
+![Evolución de ASP.NET](https://github.com/sebys/aspnet-core-linux/blob/master/slides/img/aspnet-framework-evolution.png)
+
+Los principales hitos de este framework a lo largo de su historia fueron:
+
+- **ACTIVE SERVER PAGES**: programación en vbscript similar a php.
 - **ASP.NET WebForm**: en pleno surgimiento de la web, se tuvo la necesidad de atraer desarrolladores de aplicaciones de escritorio a la plataforma web.
 - **ASP.NET MVC**: integración con los estandares web (Javascript, HTML, etc).
-- **ASP.NET CORE**: modular, preparado para el cloud, multi plataforma, desacoplado de Windows y de IIS.
+- **ASP.NET CORE**: modular, preparado para el cloud, multi plataforma, desacoplado del servidor y sistema operativo.
 
-Las necesidades de las aplicaciones web fueron cambiando a traves de los años, hoy necesitamos estar conectados todo el tiempo pero hace 10 años atrás la necesidad principal era servir documentos. 
+Las necesidades de las aplicaciones web fueron cambiando a traves de los años, hoy hay una necesidad de estar conectados todo el tiempo, sin embargo hace 10 años atrás la necesidad principal era servir documentos. En el medio encontramos el surgimiento de los e-shops, aplicaciones backends, redes sociales, etc.
 
-Actualmente necesitamos servidores web optimizados para atender gran cantidad de requests con poco ancho de banda y uso de CPU, y nada mejor que servidores UNIX para estos tipos de escenarios. Este fue uno de los motivos por el cual aparece .NET Core.
+Actualmente necesitamos servidores web optimizados para atender esta gran cantidad de solicitudes que por lo general requieren poco ancho de banda y uso de CPU y la mejor opción para este tipo de escenarios son los servidores UNIX (uno de los motivos por el cual hoy aparece .NET Core).
 
 ## ASP.NET Core
 
@@ -300,31 +302,17 @@ The most important reason for using a reverse proxy for edge deployments (expose
 
 1. Instalar la última versión de .NET Core: https://www.microsoft.com/net/core#linuxubuntu
 1. Instalar Visual Studio Code con la extensión C#.
-
-Crear directorio "demo" y correr el comando "dotnet new mvc" para crear un proyecto web asp.net core mvc.
-
-En Visual Studio Core abrir la carpeta donde creamos el proyecto.
-
-Abrir el archivo Startup.cs: Visual Studio Core nos pedira restaurar las dependencias del proyecto (1) y agregar los archivos de configuración de compilación y depuración (2).
-
-(1) Una alternativa para restaurar los paquetes es por medio del comando "dotnet restore".
-(2) En el archivo launch.json configurar la propiedad program de la siguiente manera:
-
- "program": "${workspaceRoot}/bin/Debug/netcoreapp1.1/{project_name}.dll",
-
-Copiar el archivo .gitignore usado en las demos.
-
-Realizar modificaciones sobre el código (ver si no mostramos algo de middleware, inyección de dependencias, tag helpers, etc).
-
-Ejecutar y debugear.
-
-Mostrar como podemos ejecutar la aplicación por consola usando el comando "dotnet run".
-
-Integración con Git:
-- Clonar repo en el directorio.
+1. Crear directorio `demo` y correr el comando `dotnet new mvc` para crear un proyecto web ASP.NET Core MVC.
+1. En Visual Studio Core abrir la carpeta donde creamos el proyecto.
+1. Abrir el archivo `Startup.cs`: Visual Studio Core nos pedira restaurar las dependencias del proyecto (1) y agregar los archivos de configuración de compilación y depuración (2).
+    1. Una alternativa para restaurar los paquetes es por medio del comando "dotnet restore".
+    1. En el archivo launch.json configurar la propiedad `program` de la siguiente manera: `"program": "${workspaceRoot}/bin/Debug/netcoreapp1.1/{project_name}.dll"`
+1. Copiar el archivo .gitignore usado en las demos.
+1. Realizar modificaciones sobre el código (ver si no mostramos algo de middleware, inyección de dependencias, tag helpers, etc).
+1. Ejecutar y debugear.
+1. Mostrar como podemos ejecutar la aplicación por consola usando el comando `dotnet run`.
+1. Integración con Git:
 - git init
 - git remote add origin https://*.git
-
-Pushear cambios, bajar en Windows y ejecutarlo nuevamente.
-
-Publicarlo en Azure y en Linux!
+1. Pushear cambios, bajar en Windows y ejecutarlo nuevamente.
+1. Publicarlo en Azure y en Linux!
