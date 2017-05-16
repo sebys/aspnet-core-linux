@@ -38,11 +38,11 @@ El ecosistema de .NET en la actualidad:
 
 ![Ecosistema de .NET](https://github.com/sebys/aspnet-core-linux/blob/master/slides/img/dotnet.png)
 
-- Full .NET Framework: incluye todas las APIS y asegura compatibilidad con todas las librerías y frameworks ya conocidos. Solamente corre en Windows y por lo general viene con el sistema operativo. Pesado y monolitico.
+- **Full .NET Framework**: incluye todas las APIS y asegura compatibilidad con todas las librerías y frameworks ya conocidos. Solamente corre en Windows y por lo general viene con el sistema operativo. Pesado y monolitico.
 
-- .NET Core: framework mucho más pequeño, que corre en Windows, Linux y iOS. Como frameworks de alto nivel tenemos ASP.NET CORE y Universal Windows Platform.
+- **.NET Core**: framework pequeño, modular - descargo lo que necesito -, side by side y que corre en Windows, Linux y iOS. Como frameworks de alto nivel tenemos ASP.NET CORE y Universal Windows Platform.
 
-- Xamarin: se monto sobre la misma infraestructura en común y tiene su propia BCL y framewroks para el desarrollo de aplicaciones mobile.
+- **Xamarin**: se monta sobre la misma infraestructura en común que los otros y tiene su propia BCL y frameworks para el desarrollo de aplicaciones mobile.
 
 ## .NET Core
 
@@ -61,11 +61,11 @@ Tal vez el atractivo más grande es que podemos correr nuestras aplicaciones .NE
 
 Al ser modular solo uso lo que necesito, por lo el resultado es un framework muy pequeño comparado al monolítico .NET Framework. La gestión de dependencias se hacen por medio del gestor de paquetes Nuget. Este esquema no solo nos permite incrementar la performance de nuestras aplicaciones sino que nos permite mayor agilidad en nuestros desarrollos, ya que tenemos la posibilidad de elegir las bibliotecas que realmente vamos a utilizar.
 
-Es importante tener en cuenta que el "ejecutable" final esta compuesto por nuestra código, el compilador y el runtime. Esto me permite tener aplicaciones con distintas versiones de .NET corriendo el misma máquina, por lo tanto ya no necesitamos instalar el framework en los equipos. De esta forma el despliegue de aplicaciones resulta más sencillo.
+Es importante tener en cuenta que el "ejecutable" final esta compuesto por nuestro código, el compilador y el runtime. Esto me permite tener aplicaciones con distintas versiones de .NET corriendo el misma máquina -*side by side*-, por lo tanto ya no necesitamos instalar el framework en los equipos. De esta forma el despliegue de aplicaciones resulta más sencillo.
 
 Gracias a CLI podemos crear, ejecutar y desplegar aplicaciones .NET Core desde la consola utilizando el comando `dotnet`.
 
-.NET Core posee dos grandes frameworks: ASP.NET CORE y UWP.
+__Importante: las aplicaciones .NET Core puedo compilarlas y ejecutarlas a través de los dierentes sistemas opertativos pero no son compatibles a nivel binario. Hay una versión de la BCL compilada de forma diferente para cada sistema operativo (y por lo tanto hacen diferentes llamdas a las primitivas del sistema operativo).
 
 ## .NET CLI
 
