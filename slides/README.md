@@ -65,7 +65,7 @@ Es importante tener en cuenta que el "ejecutable" final esta compuesto por nuest
 
 Gracias a CLI podemos crear, ejecutar y desplegar aplicaciones .NET Core desde la consola utilizando el comando `dotnet`.
 
-__Importante: las aplicaciones .NET Core puedo compilarlas y ejecutarlas a través de los dierentes sistemas opertativos pero no son compatibles a nivel binario. Hay una versión de la BCL compilada de forma diferente para cada sistema operativo (y por lo tanto hacen diferentes llamdas a las primitivas del sistema operativo).
+**Importante**: las aplicaciones .NET Core puedo compilarlas y ejecutarlas a través de los dierentes sistemas opertativos pero no son compatibles a nivel binario. Hay una versión de la BCL compilada de forma diferente para cada sistema operativo (y por lo tanto hacen diferentes llamdas a las primitivas del sistema operativo).
 
 ## .NET CLI
 
