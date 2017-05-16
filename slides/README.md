@@ -18,7 +18,7 @@ El contenido de esta presentación abarca una introducción a .NET Framework, .N
 
 ## .NET Framework
 
-.NET Framework es una tecnología desarrollado por Microsoft que soporta la compilación y ejecución de aplicaciones en Windows.
+.NET Framework es una tecnología desarrollado por Microsoft que soporta la compilación y ejecución de aplicaciones.
 
 Esta compuesto de:
 
@@ -34,11 +34,15 @@ Cuando compilamos nuestra aplicación, el compilador del lenguaje genera código
 
 Cuando el SO detecta que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo *just in time* el código IL en código nativo que es ejecutado por la plataforma. El runtime además de ofrecer el compilador JIT nos provee de otros servicios como el Garbage Collector.
 
-Full .NET Framework incluye todas las APIS y asegura compatibilidad par atrás (generalmente viene con el SO).
-
 El ecosistema de .NET en la actualidad:
 
 ![Ecosistema de .NET](https://github.com/sebys/aspnet-core-linux/blob/master/slides/img/dotnet.png)
+
+- Full .NET Framework: incluye todas las APIS y asegura compatibilidad con todas las librerías y frameworks ya conocidos. Solamente corre en Windows y por lo general viene con el sistema operativo. Pesado y monolitico.
+
+- .NET Core: framework mucho más pequeño, que corre en Windows, Linux y iOS. Como frameworks de alto nivel tenemos ASP.NET CORE y Universal Windows Platform.
+
+- Xamarin: se monto sobre la misma infraestructura en común y tiene su propia BCL y framewroks para el desarrollo de aplicaciones mobile.
 
 ## .NET Core
 
