@@ -36,6 +36,10 @@ Cuando el SO detecta que lo que se ejecuta es código punto .NET, pone a correr 
 
 Full .NET Framework incluye todas las APIS y asegura compatibilidad par atrás (generalmente viene con el SO).
 
+El ecosistema de .NET en la actualidad:
+
+![Ecosistema de .NET](https://github.com/sebys/aspnet-core-linux/blob/master/slides/img/dotnet.png)
+
 ## .NET Core
 
 .NET Core es el nuevo framework *open source* de .NET escrito totalmente desde cero. Incluye un subconjunto de la versión completa de .NET Framework y fue diseñado de forma modular para que sea portátil entre plataformas.
