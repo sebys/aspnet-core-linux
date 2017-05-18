@@ -7,11 +7,12 @@
 		<title>ASP.NET Core en Linux</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+		<link rel="stylesheet" href="css/custom.css">
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -24,27 +25,38 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
-					<h2>Corriendo aplicaciones ASP.NET Core en Linux</h2>
-					<p>Mario Pozzo @camboris</p>
-					<p>Sebastián Henzenn @sebis</p>
+				<section data-background="/img/inicio.jpg">
 				</section>
-				<section>
+				<section data-background="/img/pantallas.jpg">
 					<h2>.NET Framework</h2>
-					<p>Plataforma de desarrollo de proposito general.</p>					
-					<ul>
-						<li>Lenguajes y compiladores</li>
-						<li>Runtime</li>						
-						<li>BCL</li>
-					</ul>
-				</section>
-				<section  data-background="img/ms-love-linux.jpg">
-				</section>
-				<section>
-					<h2>.NET</h2>
+					<p>Plataforma de desarrollo de proposito general desarrollada por Microsoft que soporta la compilación y ejecución de aplicaciones.</p>					
+					<aside class="notes">
+						Esta compuesto de:
+						<br>
+						<ul>
+							<li>Lenguajes y Compiladores para los lenguajes: no generan código nativo, sino código IL (intermediate language).</li>
+							<li>Runtime de ejecución: interpreta el código IL y lo convierte a código nativo que es ejecutado por la plataforma.</li>
+							<li>Base Class Library: librería base.</li>
+						</ul>
+						Funcionamiento del framework:<br>
+						Cuando compilamos nuestra aplicación, el compilador del lenguaje genera código IL.<br>
+						Cuando el SO detecta que lo que se ejecuta es código punto .NET, pone a correr el runtime convirtiendo just in time el código IL en código nativo que es ejecutado por la plataforma. El runtime además de ofrecer el compilador JIT nos provee de otros servicios como el Garbage Collector.
+					</aside>
+				</section>				
+				<section data-background="/img/pantallas.jpg">
+					<h2>Ecosistema .NET</h2>
 					<img data-src="img/dotnet.png">
-				</section>							
-				<section>
+					<aside class="notes">
+						<ul>
+						<li>Full .NET Framework: incluye todas las APIS y asegura compatibilidad con todas las librerías y frameworks ya conocidos. Solamente corre en Windows y por lo general viene con el sistema operativo. Pesado y monolitico.</li>
+						<li>.NET Core: framework pequeño, modular - descargo lo que necesito -, side by side y que corre en Windows, Linux y iOS. Como frameworks de alto nivel tenemos ASP.NET CORE y Universal Windows Platform.</li>
+						<li>Xamarin: se monta sobre la misma infraestructura en común que los otros y tiene su propia BCL y frameworks para el desarrollo de aplicaciones mobile.</li>
+						</ul>
+					</aside>
+				</section data-background="/img/pantallas.jpg">
+					<section data-background="img/microsoft-linux.png">
+				</section>											
+				<section data-background="/img/pantallas.jpg">
 					<h2>.NET Core</h2>
 					<p>Es una versión modular de .NET Framework diseñada para que funcione en todas las plataformas.</p>
 					<ul>
@@ -53,28 +65,140 @@
 						<li>Open Source</li>
 						<li>CLI</li>
 					</ul>
+					<aside class="notes">
+						.NET Core es el nuevo framework open source de .NET escrito totalmente desde cero. Incluye un subconjunto de la versión completa de .NET Framework y fue diseñado de forma modular para que sea portátil entre plataformas.<br>
+						Características:<br>
+						<ul>
+							<li>Open Source: compiladores, runtime, BLC.</li>
+							<li>Multiplataforma: funciona en Windows, Linux y iOS.</li>
+							<li>Modular: solo usas lo que necesitas (Nuget).</li>							
+							<li>CLI: nos provee de herramientas de línea de comando.</li>
+						</ul>
+						.NET Core es open source, incluyendo el runtime y las librerías que componen el framework. Todo el código fuente está disponible en GitHub.<br>				
+						Tal vez el atractivo más grande es que podemos correr nuestras aplicaciones .NET en cualquier plataforma (en Linux solo se tiene soporte en las distribuciones LTS).<br>
+						Al ser modular solo uso lo que necesito, por lo el resultado es un framework muy pequeño comparado al monolítico .NET Framework. La gestión de dependencias se hacen por medio del gestor de paquetes Nuget. Este esquema no solo nos permite incrementar la performance de nuestras aplicaciones sino que nos permite mayor agilidad en nuestros desarrollos, ya que tenemos la posibilidad de elegir las bibliotecas que realmente vamos a utilizar.<br>
+						Es importante tener en cuenta que el "ejecutable" final esta compuesto por nuestro código, el compilador y el runtime. Esto me permite tener aplicaciones con distintas versiones de .NET corriendo el misma máquina -side by side-, por lo tanto ya no necesitamos instalar el framework en los equipos. De esta forma el despliegue de aplicaciones resulta más sencillo.<br>
+						Gracias a CLI podemos crear, ejecutar y desplegar aplicaciones .NET Core desde la consola utilizando el comando dotnet.<br>
+						Importante: las aplicaciones .NET Core puedo compilarlas y ejecutarlas a través de los dierentes sistemas opertativos pero no son compatibles a nivel binario. Hay una versión de la BCL compilada de forma diferente para cada sistema operativo (y por lo tanto hacen diferentes llamdas a las primitivas del sistema operativo).
+					</aside>
 				</section>
-				<section>
+				<section data-background="/img/pantallas.jpg">
 					<h2>.NET CLI</h2>
-					<p>The .NET Core command-line interface (CLI) is a new cross-platform toolchain for developing .NET applications.</p>
+					<p>Es una herramienta de línea de comando que nos permite compilar, desplegar y administrar aplicaciones .NET Core en todas las plataformas.</p>
+					<div class="step-prompt">
+							<ol>
+								<li>dotnet new mvc</li>
+								<li>dotnet restore</li>
+								<li>dotnet run</li>
+							</ol>
+						</div>
+					<aside class="notes">
+						Desde el surgimiento de .NET Core fue sufriendo algunos cambios pasando del comando dnx o dnuv hasta dotnet.<br>
+						Las opciones disponibles para el comando dotnet:<br>
+						<ul>
+						<li>new</li>
+						<li>restore</li>
+						<li>run</li>
+						<li>build</li>
+						<li>publish</li>
+						<li>test</li>
+						<li>packz</li>
+						</ul>
+						CLI nos permite montar herramientas de nivel superior, como entornos de desarrollo integrado (IDEs), editores y build orchestrators.
+					</aside>
 				</section>				
-				<section>
+				<section data-background="/img/pantallas.jpg">
 					<h2>ASP.NET</h2>
-					<img data-src="img/dev-aspnet.png" style="border:none; background: none;" />
-					<p>ASP.NET is an open source web framework for building modern web apps and services with .NET. ASP.NET creates websites based on HTML5, CSS, and JavaScript that are simple, fast, and can scale to millions of users.</p>
+					<p>ASP.NET es el framework de desarrollo web de Microsoft. Esta herramienta nos permite construir diferentes tipos de soluciones webs (aplicaciones, sites y sevicios) del tipo cliente-servidor.</p>
+					<aside class="notes">
+					Las alternativas disponibles son:<br>
+					<ul>
+						<li>Web: MVC, Web Forms, Web Pages.</li>
+						<li>APIs: Web API</li>
+						<li>RealTime: SignalR</li>
+					</ul>
+					</aside>
 				</section>
-				<section>
+				<section data-background="/img/pantallas.jpg">
 					<h2>Evolución de ASP.NET</h2>
-					<img data-src="img/evolution-aspnet.jpg">
+					<img data-src="img/aspnet-framework-evolution.png">
+					<aside class="notes">
+					Los principales hitos de este framework a lo largo de su historia fueron:<br>
+					<ul>
+						<li>ACTIVE SERVER PAGES: programación en vbscript similar a php.</li>
+						<li>ASP.NET WebForm: en pleno surgimiento de la web, se tuvo la necesidad de atraer desarrolladores de aplicaciones de escritorio a la plataforma web.</li>
+						<li>ASP.NET MVC: integración con los estandares web (Javascript, HTML, etc).</li>
+						<li>ASP.NET CORE: modular, preparado para el cloud, multi plataforma, desacoplado del servidor y sistema operativo.</li>
+					</ul>
+					Las necesidades de las aplicaciones web fueron cambiando a traves de los años, hoy hay una necesidad de estar conectados todo el tiempo, sin embargo hace 10 años atrás la necesidad principal era servir documentos. En el medio encontramos el surgimiento de los e-shops, aplicaciones backends, redes sociales, etc.<br>
+					Actualmente necesitamos servidores web optimizados para atender esta gran cantidad de solicitudes que por lo general requieren poco ancho de banda y uso de CPU y la mejor opción para este tipo de escenarios son los servidores UNIX (uno de los motivos por el cual hoy aparece .NET Core).<br>
+					</aside>
 				</section>				
-				<section>
-					<h2>ASP.NET en la actualidad</h2>
-					<img data-src="img/aspnet.png">
-				</section>				
-				<section>
+				<section data-background="/img/pantallas.jpg">
+					<section>
+						<h2>ASP.NET Core</h2>
+						ASP.NET Cores es un framework open-source y multi-plataforma para construir modernas aplicaciones conectadas a internet basadas en la nube, como web apps, IoT apps y mobile backends.
+						<aside class="notes">
+						Características principales:
+						<ul>
+						<li>Modular</li>
+						<li>Preparado para el cloud</li>
+						<li>Open Source</li>
+						<li>Editores o herramientas de desarrollo</li>
+						<li>Cross Platform</li>
+						</ul>
+						ASP.NET Core tiene una serie de cambios arquitectonicos que resultan en un framework mucho más ligero y modular.<br>
+						ASP.NET Core ya no se basa en System.Web.dll (logrando desacoplar ASP.NET de Windows y de IIS). Este se basa en conjunto de paquetes NuGet, lo que nos permite optimizar nuestra aplicación ya que solo incluimos los paquetes que necesitamos.<br>
+						Una aplicación ASP.NET CORE es un app CORE cualquiera (tiene un clase program con un método main), solo que incluye los paquetes de ASP.NET. Como toda aplicación .NET CORE la misma esta compuesta por el compiladores y runtime lo que nos da soporte de side-by-side app versioning (no se requiere tener instalado nada en el servidor).<br>
+						Esta preparado para el cloud, por que no hay dependencias del web server lo que nos permite publicar nuestras apps en cualquier lado.<br>
+						El código fuente de ASP.NET Core está disponible en GitHub.<br>
+						Podemos escribir nuestras aplicaciones en cualquier editor o herramienta de desarrollo moderna (desde Visual Studio o Visual Studio Code hasta Atom o Notepad++). Con Visual Studio o Code tenemos soporte para debug, cosa que otras tools no soportan.<br>
+						Al ser cross-platform podemos construir y ejecutar aplicaciones ASP.NET multi-plataforma en Windows, Mac y Linux.<br>
+						</aside>
+					</section>
+					<section>
+						<ul>
+							<li>Unifación proceso de creación de aplicaciones web UI y web API.</li>
+							<li>Intregación con modernos frameroks client-side y workflows de desarrollo (gulp, grunt, bower, bootstrap, knockout.js, angular, less, sass, typescript, etc).</li>
+							<li>Inyección de dependencias integrado.</li>
+							<li>Nuevo HTTP request pipeline, mucho más ligero y modular.</li>
+							<li>Capacidad para alojar en IIS or auto-hostearlo en nuestros propios procesos.</li>
+							<li>Construido en .NET Core, soportando escenarios side-by-side.</li>
+							<li>Nuevas herramientas que simplifican el desarrollo de aplicaciones web modernas.</li>
+							<li>Open source y centrado en la comunidad.</li>
+							<li>Sistema de configuración basado en la nube.</li>
+						</ul>
+						<aside class="notes">
+						</aside>
+					</section>
+					<section>
+						<h2>Por dentro</h2>
+						<ul>
+							<li>Program class</li>
+							<li>Startup</li>
+							<li>Services</li>
+							<li>Middleware</li>
+							<li>Host and Servers</li>
+							<li>Content Root</li>
+							<li>Web Root</li>
+							<li>Configuration</li>
+							<li>Enviroments</li>
+						</ul>
+						<aside class="notes">
+						</aside>
+					</section>
+				</section>
+				<section data-background="/img/pantallas.jpg">
 					<h2>Kestrel</h2>
+					<p>Kestrek es un servidor de aplicaciones ASP.NET Core multi-plataforma, asincronico, basado en Libuv (librería I/O async cross-platform).</p>
 					<img data-src="img/kestrel.png">
+					<aside class="notes">
+						Es el web server que ASP.NET Core incluye por default cuando creamos un nuevo proyecto.<br>
+						No está pensado para extar expuesto hacia afuera, solamente para procesar requests. Por lo tanto sobre Kestrel deberíamos montar un reverse proxy server que cuente con carácteristicas como: virtual host, seguridad, login, cache, etc. La razón más importante de usar un servidor proxy (expuestos al tráfico de internet) es la seguridad. Kestrel es relativamente nuevo y aún no cuenta con un conjunto completo de defensas contra ataques.
+					</aside>
 				</section>	
+				<section data-background="/img/muchas-gracias.jpg">
+				</section>
 			</div>
 		</div>
 

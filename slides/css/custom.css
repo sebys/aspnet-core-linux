@@ -1,0 +1,23 @@
+.step-prompt {
+    font-family: "Consolas","Monaco",monospace !important;
+    font-size: 24px  !important;
+    width: 100% !important;
+    border-radius: 8px  !important;
+    border-top: 30px solid silver  !important;
+    word-break: break-all  !important;
+}
+
+.step-prompt ol {
+    background: #000 !important;
+    padding: 10px 15px !important;
+    color: #fff !important;
+    border-radius: 0 0 8px 8px !important;
+    margin: 0 !important;
+    display: block !important;
+}
+
+.step-prompt ol li {
+    list-style: none !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+}
