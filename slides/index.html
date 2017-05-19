@@ -48,9 +48,9 @@
 					<img data-src="img/dotnet.png">
 					<aside class="notes">
 						<ul>
-						<li>Full .NET Framework: incluye todas las APIS y asegura compatibilidad con todas las librerías y frameworks ya conocidos. Solamente corre en Windows y por lo general viene con el sistema operativo. Pesado y monolitico.</li>
-						<li>.NET Core: framework pequeño, modular - descargo lo que necesito -, side by side y que corre en Windows, Linux y iOS. Como frameworks de alto nivel tenemos ASP.NET CORE y Universal Windows Platform.</li>
-						<li>Xamarin: se monta sobre la misma infraestructura en común que los otros y tiene su propia BCL y frameworks para el desarrollo de aplicaciones mobile.</li>
+						<li>Full .NET Framework: incluye todas las APIS y asegura compatibilidad con todas las librerías y frameworks ya conocidos. Solamente corre en Windows y se distribuye con el sistema operativo. Pesado y monolitico.</li>
+						<li>.NET Core: framework pequeño, modular - descargo lo que necesito -, side by side y que corre en Windows, Linux y iOS. Como frameworks de alto nivel tenemos ASP.NET CORE y Universal Windows Platform. Se distribuye con la app.</li>
+						<li>Xamarin: se monta sobre la misma infraestructura en común que los otros y tiene su propia BCL y frameworks para el desarrollo de aplicaciones mobile. Se distributye con la app.</li>
 						</ul>
 					</aside>
 				</section data-background="/img/pantallas.jpg">
@@ -59,12 +59,7 @@
 				<section data-background="/img/pantallas.jpg">
 					<h2>.NET Core</h2>
 					<p>Es una versión modular de .NET Framework diseñada para que funcione en todas las plataformas.</p>
-					<ul>
-						<li>Modular</li>
-						<li>Multiplataforma</li>
-						<li>Open Source</li>
-						<li>CLI</li>
-					</ul>
+					<img data-src="img/net-core-features.png" width="70%">
 					<aside class="notes">
 						.NET Core es el nuevo framework open source de .NET escrito totalmente desde cero. Incluye un subconjunto de la versión completa de .NET Framework y fue diseñado de forma modular para que sea portátil entre plataformas.<br>
 						Características:<br>
@@ -84,14 +79,14 @@
 				</section>
 				<section data-background="/img/pantallas.jpg">
 					<h2>.NET CLI</h2>
-					<p>Es una herramienta de línea de comando que nos permite compilar, desplegar y administrar aplicaciones .NET Core en todas las plataformas.</p>
+					<p>Herramienta de línea de comando que nos permite compilar, desplegar y administrar aplicaciones .NET Core en todas las plataformas.</p>
 					<div class="step-prompt">
 							<ol>
 								<li>dotnet new mvc</li>
 								<li>dotnet restore</li>
 								<li>dotnet run</li>
 							</ol>
-						</div>
+					</div>
 					<aside class="notes">
 						Desde el surgimiento de .NET Core fue sufriendo algunos cambios pasando del comando dnx o dnuv hasta dotnet.<br>
 						Las opciones disponibles para el comando dotnet:<br>
@@ -109,7 +104,8 @@
 				</section>				
 				<section data-background="/img/pantallas.jpg">
 					<h2>ASP.NET</h2>
-					<p>ASP.NET es el framework de desarrollo web de Microsoft. Esta herramienta nos permite construir diferentes tipos de soluciones webs (aplicaciones, sites y sevicios) del tipo cliente-servidor.</p>
+					<p>ASP.NET es el framework de desarrollo web de Microsoft que nos permite construir diferentes tipos de soluciones webs del tipo cliente-servidor.</p>
+					<img data-src="img/aspnet-features.png">
 					<aside class="notes">
 					Las alternativas disponibles son:<br>
 					<ul>
@@ -121,7 +117,7 @@
 				</section>
 				<section data-background="/img/pantallas.jpg">
 					<h2>Evolución de ASP.NET</h2>
-					<img data-src="img/aspnet-framework-evolution.png">
+					<img data-src="img/aspnet-framework-evolution.png" width="95%">
 					<aside class="notes">
 					Los principales hitos de este framework a lo largo de su historia fueron:<br>
 					<ul>
@@ -137,7 +133,7 @@
 				<section data-background="/img/pantallas.jpg">
 					<section>
 						<h2>ASP.NET Core</h2>
-						ASP.NET Cores es un framework open-source y multi-plataforma para construir modernas aplicaciones conectadas a internet basadas en la nube, como web apps, IoT apps y mobile backends.
+						ASP.NET Core es un framework open-source y multi-plataforma para construir modernas aplicaciones conectadas a internet basadas en la nube, como web apps, IoT apps y mobile backends.
 						<aside class="notes">
 						Características principales:
 						<ul>
@@ -157,6 +153,21 @@
 						</aside>
 					</section>
 					<section>
+						<h2>ASP.NET Core</h2>
+						<small>
+						<ul>
+							<li>Unifación proceso de creación de aplicaciones web UI y web API.</li>
+							<li>Intregación con modernos frameworks client-side y workflows de desarrollo.</li>
+							<li>Inyección de dependencias integrado.</li>
+							<li>Nuevo HTTP request pipeline, mucho más ligero y modular.</li>
+							<li>Capacidad para alojar en IIS or auto-hostearlo en nuestros propios procesos.</li>
+							<li>Construido en .NET Core, soportando escenarios side-by-side.</li>
+							<li>Nuevas herramientas que simplifican el desarrollo de aplicaciones web modernas.</li>
+							<li>Open source y centrado en la comunidad.</li>
+							<li>Sistema de configuración basado en la nube.</li>
+						</ul>
+						</small>
+						<aside class="notes">
 						<ul>
 							<li>Unifación proceso de creación de aplicaciones web UI y web API.</li>
 							<li>Intregación con modernos frameroks client-side y workflows de desarrollo (gulp, grunt, bower, bootstrap, knockout.js, angular, less, sass, typescript, etc).</li>
@@ -168,7 +179,6 @@
 							<li>Open source y centrado en la comunidad.</li>
 							<li>Sistema de configuración basado en la nube.</li>
 						</ul>
-						<aside class="notes">
 						</aside>
 					</section>
 					<section>
