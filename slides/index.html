@@ -228,16 +228,39 @@
             </ul>
           </section>
           <section data-background="/img/pantallas.jpg">
+            <h3>Uso de Apache</h3>
+            <img src="img/netcraft.png" alt="">
+            <aside class="notes">
+              <p> grafico tomado de netcraft abril 2017. Tomar con pinzas </p>
+<p>muy popular en hosting baratos y facil de poner en marcha en vps</p>
+            </aside>
+          </section>
+          <section data-background="/img/pantallas.jpg">
+              <h4>¿Por que Reverse proxy?</h4>
+              <img src="img/reverseproxy.png" alt="">
+          </section>
+          <section data-background="/img/pantallas.jpg">
+              <h4>Beneficios</h4>
+              <ul>
+                <li>Balanceo de Carga</li>
+                <li>Aceleracion</li>
+                <li>Seguridad y Anonimidad</li>
+              </ul>
+              <aside class="notes">
+<p> Aceleracion: compresion on the fly </p>
+              </aside>
+          </section>
+          <section data-background="/img/pantallas.jpg">
             <h3>Conf apache</h3>
             <p>En <code>/etc/httpd/conf/extra/httpd-vhosts.conf</code></p>
             <pre><code> &lt;VirtualHost *:80&gt;
-                  ServerName dotnet.com
-                  ProxyPreserveHost on
-                  ProxyPass / http://0.0.0.0:5000/
-                  ProxyPassReverse / http://0.0.0.0:5000/
-                  ErrorLog &quot;/var/log/httpd/dotnetcom-error_log&quot;
-                  CustomLog &quot;/var/log/httpd/dotnetcom-access_log&quot; common
-              &lt;/VirtualHost&gt;
+  ServerName dotnet.com
+  ProxyPreserveHost on
+  ProxyPass / http://0.0.0.0:5000/
+  ProxyPassReverse / http://0.0.0.0:5000/
+  ErrorLog &quot;/var/log/httpd/dotnetcom-error_log&quot;
+  CustomLog &quot;/var/log/httpd/dotnetcom-access_log&quot; common
+&lt;/VirtualHost&gt;
             </code></pre>
             <aside class="notes">
               <ul>
@@ -256,38 +279,36 @@
             </ul>
           </section>
           <section data-background="/img/pantallas.jpg">
-            <h3>Systemd</h3>
-            <p>¿Qué es?</p>
-            <p>En <code>/etc/systemd/system</code></p>
-            <pre><code>[Unit]
-              [Unit]
-              Description=Sitio web dotnet
-
-              [Service]
-              Type=simple
-              PIDFile=/run/appDemo.pid
-              User=root
-              WorkingDirectory=/srv/appDemo
-              ExecStart=/usr/bin/dotnet demo-aspnetcore.dll
-              Environment=ASPNETCORE_ENVIRONMENT=Production
-              ExecStopPost=/usr/bin/rm -f /run/appDemo.pid
-              Restart=always
-              </code></pre>
+            <h3>Supervisord</h3>
+            <ul>
+              <li>Python</li>
+              <li>Cliente/Servidor</li>
+              <li>Monitorea y controla procesos</li>
+            </ul>
           </section>
           <section data-background="/img/pantallas.jpg">
-            <h3>Supervisor</h3>
-            <p>¿Qué es?</p>
-            <p>En <code>/etc/systemd/system</code></p>
-            <pre><code>[program:dotnettest]
-            command=/usr/bin/dotnet /var/dotnettest/dotnettest.dll --server.urls:http://*:5123
-            directory=/var/dotnettest/
-            autostart=true
-            autorestart=true
-            stderr_logfile=/var/log/dotnettest.err.log
-            stdout_logfile=/var/log/dotnettest.out.log
-            environment=ASPNETCORE_ENVIRONMENT=Production
-            user=www-data
-            stopsignal=INT
+            <h3>Systemd</h3>
+            <ul>
+              <li>Sistema de init para Linux</li>
+              <li>Reemplaza a SysV init </li>
+              <li>Controvertido</li>
+            </ul>
+          </section>
+          <section data-background="/img/pantallas.jpg">
+            <h3>Unit</h3>
+            <p>En <code>/etc/systemd/system/appDemo.service</code></p>
+            <pre><code>[Unit]
+Description=Sitio web dotnet
+
+[Service]
+Type=simple
+PIDFile=/run/appDemo.pid
+User=root
+WorkingDirectory=/srv/appDemo
+ExecStart=/usr/bin/dotnet demo-aspnetcore.dll
+Environment=ASPNETCORE_ENVIRONMENT=Production
+ExecStopPost=/usr/bin/rm -f /run/appDemo.pid
+Restart=always
               </code></pre>
           </section>
         </section>
